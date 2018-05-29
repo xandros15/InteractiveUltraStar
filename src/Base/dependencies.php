@@ -1,5 +1,6 @@
 <?php
 
+use MongoDB\Client;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
@@ -38,4 +39,10 @@ $container['logger'] = function (Container $container) {
     $logger->pushHandler(new StreamHandler($settings['path'], $settings['level']));
 
     return $logger;
+};
+
+$container['database'] = function (Container $container) {
+    $client = new Client();
+
+    return $client->selectDatabase($container->settings['database']['name']);
 };
