@@ -2,6 +2,8 @@
 
 use Slim\App;
 
+@session_start();
+
 require __DIR__ . '/../vendor/autoload.php';
 
 $app = new App(require __DIR__ . '/../config/web.php');

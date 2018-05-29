@@ -6,6 +6,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Slim\App;
 use Slim\Container;
+use Slim\Flash\Messages;
 use Slim\HttpCache\CacheProvider;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
@@ -25,6 +26,8 @@ $container['view'] = function (Container $container) {
     if ($container->settings['displayErrorDetails']) {
         $view->addExtension(new Twig_Extension_Debug());
     }
+
+    $view->getEnvironment()->addGlobal('flash', $container->get('flash'));
 
     return $view;
 };
@@ -50,4 +53,8 @@ $container['database'] = function (Container $container) {
 
 $container['songs'] = function (Container $container) {
     return new Songs($container->database);
+};
+
+$container['flash'] = function () {
+    return new Messages();
 };
