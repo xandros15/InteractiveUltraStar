@@ -26,6 +26,13 @@ abstract class BaseTestCase extends TestCase
     protected $withMiddleware = true;
 
     /**
+     * If we want to setup app in other way
+     *
+     * @var array
+     */
+    protected $customSettings = [];
+
+    /**
      * @param $requestMethod
      * @param $requestUri
      * @param null $requestData
@@ -96,7 +103,8 @@ abstract class BaseTestCase extends TestCase
 
     protected function createApplication()
     {
-        $this->app = $app = new App(require __DIR__ . '/../config/web.php');
+        $settings = array_merge(require __DIR__ . '/../config/web.php', $this->customSettings);
+        $this->app = $app = new App($settings);
 
         require __DIR__ . '/../src/Base/dependencies.php';
 
