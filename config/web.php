@@ -9,5 +9,6 @@ return [
             'level' => Monolog\Logger::DEBUG,
             'path' => __DIR__ . '/../logs/' . (new DateTime())->format('Y-m-d') . '-app.log',
         ],
+        'auth' => require __DIR__ . '/auth.php',
     ],
 ];
