@@ -9,6 +9,7 @@ use Slim\Container;
 use Slim\HttpCache\CacheProvider;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
+use UltraStar\Database\Songs;
 
 /** @var $app App */
 $container = $app->getContainer();
@@ -45,4 +46,8 @@ $container['database'] = function (Container $container) {
     $client = new Client();
 
     return $client->selectDatabase($container->settings['database']['name']);
+};
+
+$container['songs'] = function (Container $container) {
+    return new Songs($container->database);
 };
