@@ -1,9 +1,13 @@
 <?php
 
 use Slim\App;
+use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\HttpCache\Cache;
+
+/** @var $container Container */
+$container = $app->getContainer();
 
 /** @var $app App */
 $app->add(function (Request $request, Response $response, $next) {
@@ -24,4 +28,6 @@ $app->add(function (Request $request, Response $response, $next) {
     return $next($request, $response);
 });
 
-$app->add(new Cache('public', 86400));
+if (!$container->settings['displayErrorDetails']) { //turn off cache on dev
+    $app->add(new Cache('public', 86400));
+}
