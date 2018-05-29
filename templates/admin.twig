@@ -22,7 +22,7 @@
                     <td title="{{ song._id }}">{{ song.name }}</td>
                     <td>{{ song.tags | join(', ') }}</td>
                     <td>{{ song.artists | join(', ') }}</td>
-                    <td>{{ song.language | join(', ') }}</td>
+                    <td>{{ song.languages | join(', ') }}</td>
                     <td>{{ song.createdAt[:10] | date('Y-m-d H:i:s') }}</td>
                     <td>
                         <div class="btn-group">
