@@ -17,6 +17,7 @@ class AddSongMiddleware
         'artists',
         'tags',
         'languages',
+        'isTournament',
     ];
     /** @var Messages */
     private $flash;
@@ -37,9 +38,11 @@ class AddSongMiddleware
     {
         $params = $request->getParams(self::ALLOWED);
         $params = $this->normalize($params);
+        $params['isTournament'] = $params['isTournament'] ? true : false;
 
         try {
             v::stringType()->length(3, 512)->setName('Song name')->assert($params['name'] ?? '');
+            v::boolVal()->setName('Is tournament')->assert($params['isTournament'] ?? false);
 
             v::arrayVal()
              ->each(v::stringType()->length(3, 64)->setName('single artist'))

@@ -47,6 +47,14 @@
             </ul>
             <button type="button" data-list="language" class="add-item btn-success btn">Add new language</button>
         </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="hidden" name="isTournament" value="0">
+                <input class="form-check-input" type="checkbox" name="isTournament" value="1"
+                       id="isTournament" {{ song.isTournament ? 'checked' : '' }}>
+                <label class="form-check-label" for="isTournament">Tournament song</label>
+            </div>
+        </div>
         {% if song._id is empty %}
             <button class="btn btn-primary">Create</button>
         {% else %}

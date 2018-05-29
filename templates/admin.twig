@@ -12,6 +12,7 @@
                 <th>Song tags</th>
                 <th>Song artist</th>
                 <th>Song language</th>
+                <th>Is Tournament</th>
                 <th>Created at</th>
                 <th>Options</th>
             </tr>
@@ -23,6 +24,7 @@
                     <td>{{ song.tags | join(', ') }}</td>
                     <td>{{ song.artists | join(', ') }}</td>
                     <td>{{ song.languages | join(', ') }}</td>
+                    <td>{{ song.isTournament ? 'yes' : 'no' }}</td>
                     <td>{{ song.createdAt[:10] | date('Y-m-d H:i:s') }}</td>
                     <td>
                         <div class="btn-group">

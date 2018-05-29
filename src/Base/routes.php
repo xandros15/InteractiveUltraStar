@@ -52,14 +52,14 @@ $app->group('/admin', function () {
             /** @var $app App */
             $app = $this;
             $app->post('/add', function (Request $request, Response $response) {
-                $params = $request->getParams(['name', 'artists', 'languages', 'tags']);
+                $params = $request->getParams(['name', 'artists', 'languages', 'tags', 'isTournament']);
                 $this->songs->create($params);
                 $this->flash->addMessage('success', 'Successful add song');
 
                 return $response->withRedirect($this->router->pathFor('song.index'));
             })->setName('song.add');;
             $app->post('/edit/{id}', function (Request $request, Response $response) {
-                $params = $request->getParams(['name', 'artists', 'languages', 'tags']);
+                $params = $request->getParams(['name', 'artists', 'languages', 'tags', 'isTournament']);
                 $this->songs->update($request->getAttribute('id', ''), $params);
                 $this->flash->addMessage('success', 'Successful update song');
 
