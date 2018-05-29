@@ -1,0 +1,23 @@
+{
+  "name": "xandros15/interactive-ultra-star",
+  "type": "project",
+  "license": "mit",
+  "authors": [
+    {
+      "name": "xandros15",
+      "email": "xandros92@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "UltraStar\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=7.2"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^4.0"
+  }
+}
