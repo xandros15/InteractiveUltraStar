@@ -48,7 +48,7 @@ abstract class BaseTestCase extends TestCase
         $headers = array_merge([
             'REQUEST_METHOD' => $requestMethod,
             'REQUEST_URI' => $requestUri,
-            'Content-Type' => 'text/html',
+            'CONTENT_TYPE' => 'text/html',
         ], $headers);
         // Create a mock environment for testing with
         $environment = Environment::mock($headers);
