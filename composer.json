@@ -15,9 +15,26 @@
     }
   },
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.2",
+    "slim/slim": "^3.10",
+    "slim/twig-view": "^2.4",
+    "slim/http-cache": "^0.4.0",
+    "monolog/monolog": "^1.23"
   },
   "require-dev": {
-    "symfony/var-dumper": "^4.0"
+    "symfony/var-dumper": "^4.0",
+    "phpunit/phpunit": "^7.1"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "process-timeout": 0
+  },
+  "scripts": {
+    "start": "php -S localhost:8080 -t web",
+    "test": "phpunit"
   }
 }

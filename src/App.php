@@ -4,7 +4,7 @@
 namespace UltraStar;
 
 
-class App
+class App extends \Slim\App
 {
 
 }
