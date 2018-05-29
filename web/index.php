@@ -1,6 +1,6 @@
 <?php
 
-use UltraStar\App;
+use Slim\App;
 
 require __DIR__ . '/../vendor/autoload.php';
 

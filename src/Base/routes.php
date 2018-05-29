@@ -1,8 +1,8 @@
 <?php
 
+use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use UltraStar\App;
 
 /** @var $app App */
 

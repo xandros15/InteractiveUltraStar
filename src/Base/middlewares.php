@@ -1,9 +1,9 @@
 <?php
 
+use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\HttpCache\Cache;
-use UltraStar\App;
 
 /** @var $app App */
 $app->add(function (Request $request, Response $response, $next) {
