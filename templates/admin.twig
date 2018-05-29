@@ -1,0 +1,38 @@
+{% extends 'base.twig' %}
+{% block content %}
+    <section>
+        <a href="{{ path_for('song.add') }}" class="btn btn-success">Add song</a>
+    </section>
+    <section>
+        <h2>Songs</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Song name</th>
+                <th>Song tags</th>
+                <th>Song artist</th>
+                <th>Song language</th>
+                <th>Created at</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td title="{{ song._id }}">{{ song.name }}</td>
+                    <td>{{ song.tags | join(', ') }}</td>
+                    <td>{{ song.artists | join(', ') }}</td>
+                    <td>{{ song.language | join(', ') }}</td>
+                    <td>{{ song.createdAt[:10] | date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ path_for('song.edit', {'id':song._id}) }}" class="btn btn-primary">edit</a>&nbsp;
+                            <a href="#" class="btn btn-danger">delete</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

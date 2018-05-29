@@ -1,0 +1,77 @@
+{% extends 'base.twig' %}
+{% macro listItem(name, value) %}
+    <li>
+        <div class="input-group mb-3">
+            <input title="{{ name }}" type="text" name="{{ name }}s[]" value="{{ value|default('') }}"
+                   class="form-control">
+            <div class="input-group-append">
+                <button class="btn btn-danger remove-item" type="button">remove</button>
+            </div>
+        </div>
+    </li>
+{% endmacro %}
+{% block content %}
+    {% import _self as forms %}
+    <form method="post" action="{{ song._id ? '#update' : '#create' }}">
+        <div class="form-group">
+            <label for="name">Song name:</label>
+            <input type="text" name="name" class="form-control" id="name" value="{{ song.name }}">
+        </div>
+        <div class="form-group">
+            <label>Song artists:</label>
+            <ul id="artist-list" class="list-unstyled">
+                {% for artist in song.artists %}
+                    {{ forms.listItem('artist', artist) }}
+                {% endfor %}
+                {{ forms.listItem('artist') }}
+            </ul>
+            <button type="button" data-list="artist" class="add-item btn-success btn">Add new artist</button>
+        </div>
+        <div class="form-group">
+            <label>Song tags:</label>
+            <ul id="tag-list" class="list-unstyled">
+                {% for tag in song.tags %}
+                    {{ forms.listItem('tag',tag) }}
+                {% endfor %}
+                {{ forms.listItem('tag') }}
+            </ul>
+            <button type="button" data-list="tag" class="add-item btn-success btn">Add new tag</button>
+        </div>
+        <div class="form-group">
+            <label>Song languages:</label>
+            <ul id="language-list" class="list-unstyled">
+                {% for language in song.languages %}
+                    {{ forms.listItem('language', language) }}
+                {% endfor %}
+                {{ forms.listItem('language') }}
+            </ul>
+            <button type="button" data-list="language" class="add-item btn-success btn">Add new language</button>
+        </div>
+        {% if song._id is empty %}
+            <button class="btn btn-primary">Create</button>
+        {% else %}
+            <button class="btn btn-warning">Update</button>
+        {% endif %}
+    </form>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $('.add-item').click(function () {
+            const name = this.dataset.list;
+            const list = $('#' + name + '-list');
+            const clone = list.find('li').first().clone(true);
+            const input = clone.find('input');
+            input.val('');
+
+            list.append(clone);
+        });
+        $('.remove-item').click(function () {
+            const count = $(this).parents('ul').find('li').length;
+            if (count > 1) {
+                $(this).parents('li').remove();
+            } else {
+                $(this).parents('li').find('input').val('');
+            }
+        });
+    </script>
+{% endblock %}
