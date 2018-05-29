@@ -16,7 +16,7 @@ class Songs
     static private $default = [
         'name' => '',
         'artists' => [],
-        'language' => [],
+        'languages' => [],
         'tags' => [],
         'createdAt' => null,
         'updatedAt' => null,
