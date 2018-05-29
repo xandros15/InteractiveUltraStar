@@ -113,4 +113,18 @@ class Songs
             throw new DocumentNotFoundException((string) $id);
         }
     }
+
+    /**
+     * @param array $query
+     * @param array $options
+     *
+     * @return \MongoDB\Driver\Cursor
+     */
+    public function find(array $query = [], array $options = [])
+    {
+        $options = array_merge(['limit' => 50], $options);
+        $songs = $this->songs->find($query, $options);
+
+        return $songs;
+    }
 }
